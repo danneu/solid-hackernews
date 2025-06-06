@@ -1,0 +1,265 @@
+@use "sass:color";
+
+$hn-bg: #f6f6f0;
+$hn-gray: #696969;
+$hn-orange: #ed702d;
+$h1-size: 2rem;
+$h2-size: 1.5rem;
+$h3-size: 1.25rem;
+// Comment nesting colors
+$a: #757573;
+$b: #b5b5b1;
+$c: #dbdbd7;
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  background-color: $hn-bg;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+h1 {
+  font-size: $h1-size;
+  line-height: calc($h1-size * 1.44);
+  margin-bottom: $h1-size;
+}
+
+h2 {
+  font-size: $h2-size;
+  line-height: calc($h2-size * 1.44);
+  margin-bottom: $h2-size;
+}
+
+h3 {
+  font-size: $h3-size;
+  line-height: calc($h3-size * 1.44);
+  margin-bottom: $h3-size;
+}
+
+p {
+  margin: 0 0 9px;
+  line-height: 18px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.navbar {
+  background-color: $hn-orange;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  margin-bottom: 1em;
+
+  .logo {
+    margin-right: 0.4rem;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+    text-align: center;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.brand {
+      font-weight: bold;
+    }
+  }
+
+  img,
+  svg {
+    vertical-align: middle;
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+
+    a {
+      margin-right: 0.5rem;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  section:last-child {
+    margin-left: auto;
+  }
+}
+
+.navbar :global(.active) {
+  text-decoration: underline;
+}
+
+@media (max-width: 550px) {
+  // .navbar .brand {
+  //     display: block;
+  // }
+  .navbar a {
+    min-width: 48px;
+    min-height: 48px;
+    line-height: 48px;
+    display: inline-block;
+  }
+  .navbar .brand {
+    display: none;
+  }
+  // .navbar a[title='app logo'],
+  .navbar a[title="github logo"] {
+    display: none;
+  }
+}
+
+.pagination {
+  text-align: center;
+  margin: 5rem 0;
+
+  :global(.active) {
+    color: $hn-gray;
+    text-decoration: none;
+  }
+}
+
+// GLOBAL FOOTER
+
+.footer {
+  color: $hn-gray;
+  text-align: center;
+  a {
+    color: $hn-gray;
+  }
+  svg {
+    vertical-align: middle;
+  }
+}
+
+.byline {
+  margin-bottom: 0.5rem;
+  color: $hn-gray;
+  a {
+    color: unset;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // User img
+  svg {
+    padding-right: 3px;
+    vertical-align: text-bottom;
+    color: color.adjust($hn-gray, $lightness: 15%);
+  }
+}
+
+.HomePage {
+  color: $hn-gray;
+
+  li {
+    margin-bottom: 1rem;
+  }
+
+  .story {
+    display: flex;
+    align-items: flex-start;
+    word-break: break-word;
+  }
+
+  aside {
+    min-width: 150px;
+  }
+}
+
+@media (max-width: 550px) {
+  .HomePage aside {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 350px) {
+  .HomePage .story {
+    flex-direction: column-reverse;
+
+    aside {
+      width: 100%;
+      text-align: right;
+    }
+  }
+}
+
+// Pushes footer to bottom
+.spacer {
+  flex: 1;
+  min-height: 25vh;
+}
+
+// STORY PAGE
+
+.StoryPage .title small {
+  font-size: 1rem;
+  color: $hn-gray;
+}
+
+.commentReplies {
+  border-top: 1px dotted;
+  border-bottom: 1px dotted;
+  border-color: $b;
+}
+
+.comment p {
+  margin-bottom: 0.5rem;
+}
+
+.comment p:last-child {
+  margin-bottom: 1rem;
+}
+
+button,
+.gutter {
+  cursor: pointer;
+}
+.gutter:hover {
+  background-color: $c;
+}
+
+.commentReplies {
+  display: flex;
+}
+
+.commentReplies > ul {
+  width: 100%;
+}
+.gutter {
+  width: 20px;
+  border-left-width: 5px;
+  border-left-style: solid;
+  &:global(.gutter-depth-0) {
+    border-color: $a;
+  }
+  &:global(.gutter-depth-1) {
+    border-color: $b;
+  }
+  &:global(.gutter-depth-2) {
+    border-color: $c;
+  }
+}
+
+// COMMENT
+
+.comment {
+  word-break: break-word;
+  padding-top: 1rem;
+  pre {
+    font-family: monospace;
+    white-space: pre-wrap;
+    margin-bottom: 0.5rem;
+  }
+}
